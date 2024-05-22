@@ -27,39 +27,48 @@ STEPS 4, 5, 6:
   Inside these click handlers set the correct mood, using 'setMood' and the variables below the imports.
 */
 
-import React from 'react'; /* STEP 0 */
+import React, { useState } from 'react'; /* STEP 0 */
 
-const initialMood = 'Not sure how I feel';
-const happyMood = 'Quite happy!';
-const sadMood = 'Rather sad';
+const happyMood = "I'm feeling happy!";
+const sadMood = "I'm feeling sad!";
+const uncertainMood = "I'm feeling uncertain!";
 
-export default function Moods() {
-  /* STEP 1 */
+export default function MoodSwitcher() {
+  // STEP 1
+  const [mood, setMood] = useState(happyMood);
 
-  const makeHappy = () => {
-    /* STEP 4 */
-  };
-  const makeSad = () => {
-    /* STEP 5 */
-  };
-  const reset = () => {
-    /* STEP 6 */
-  };
-
+  // STEP 2
   const style = {
     fontSize: '1.5em',
     marginBottom: '0.3em',
-    color: 'crimson', /* STEP 2 */
+    color: mood === happyMood ? 'royalblue' : 'crimson',
+  };
+
+  // STEP 4
+  const makeHappy = () => {
+    setMood(happyMood);
+  };
+
+  // STEP 5
+  const makeSad = () => {
+    setMood(sadMood);
+  };
+
+  // STEP 6
+  const makeUncertain = () => {
+    setMood(uncertainMood);
   };
 
   return (
-    <div className='widget-moods container'>
-      <h2>Moods</h2>
-      <div id='mood' style={style}>Not sure how I feel</div> {/* STEP 3 */}
+    <div className='widget-mood-switcher container'>
+      <h2>Mood Switcher</h2>
+      <div id='mood-display' style={style}>
+        {mood} {/* STEP 3 */}
+      </div>
       <div>
         <button id='makeHappy' onClick={makeHappy}>Make Happy</button>
         <button id='makeSad' onClick={makeSad}>Make Sad</button>
-        <button id='resetMood' onClick={reset}>Reset</button>
+        <button id='makeUncertain' onClick={makeUncertain}>Make Uncertain</button>
       </div>
     </div>
   );
